@@ -1,0 +1,122 @@
+/** popup區 ******************/
+.popupbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 990;
+    display: none;
+}
+
+.popupbox .flexBox {
+    display: flex;
+}
+
+.popupbox > .cover {
+    width: 100%;
+    height: 100%;    
+    align-items: center;
+    justify-content: center;
+}
+
+.pp_tent {
+    width: 90%;
+    max-width: 30rem;
+    height: auto;
+    max-height: 90%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0px 3px 51.4px 13.7px rgba(4, 0, 0, 0.2);
+    box-sizing: border-box;
+    padding: 1.875rem 1.875rem 2.5rem 1.875rem;
+    text-align: center;
+    line-height: 1;
+    font-weight: 300;
+}
+
+.pp_tlt {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2335;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.pp_p {
+    font-size: 1rem;
+    margin-bottom: 2em;
+}
+
+.pp_btnbox {
+    justify-content: center;
+    margin-top: 1.25rem;
+}
+
+.pp_btnbox .btn {
+    width: 45%;
+    margin: 0 2%;
+    max-width: 9.6875rem;
+    line-height: 2.5;
+    color: #ffffff;
+    font-size: 0.875rem;
+    letter-spacing: 0.03em;
+    background-color: #1f2335;
+    text-align: center;
+    border-radius: 2.5em;
+}
+
+.pp_btnbox .btn:hover,
+.pp_btnbox .btn:focus {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.pp_btnbox .btn.gray {
+    background-color: #959595;
+    margin-right: 0.625rem;
+}
+
+.pp_btnbox .btn.disabled {
+    background-color: #959595;
+    pointer-events: none !important;
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    -webkit-transition: all 0.2s;
+    transition: all 0.2s;
+}
+
+@media screen and (max-width: 560px) {
+    .pp_tent {
+        padding: 8.5vw;
+    }
+
+    .pp_icon {
+        width: 22.4vw;
+        margin: -16vw auto 0 auto;
+    }
+
+    .pp_tlt {
+        font-size: 5.8vw;
+    }
+
+    .pp_p {
+        font-size: 4vw;
+    }
+
+    .pp_btnbox {
+        margin-top: 9.375vw;
+        display: block;
+    }
+
+    .pp_btnbox .blue_btn {
+        width: auto;
+        margin: auto;
+        margin-bottom: 0.5em;
+        max-width: none;
+    }
+}

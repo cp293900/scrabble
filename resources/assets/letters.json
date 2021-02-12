@@ -1,0 +1,132 @@
+[
+    {
+        "key": "A",
+        "score": 1,
+        "qty": 9
+    },
+    {
+        "key": "B",
+        "score": 3,
+        "qty": 2
+    },
+    {
+        "key": "C",
+        "score": 3,
+        "qty": 2
+    },
+    {
+        "key": "D",
+        "score": 2,
+        "qty": 4
+    },
+    {
+        "key": "E",
+        "score": 1,
+        "qty": 12
+    },
+    {
+        "key": "F",
+        "score": 4,
+        "qty": 2
+    },
+    {
+        "key": "G",
+        "score": 2,
+        "qty": 3
+    },
+    {
+        "key": "H",
+        "score": 4,
+        "qty": 2
+    },
+    {
+        "key": "I",
+        "score": 1,
+        "qty": 9
+    },
+    {
+        "key": "J",
+        "score": 8,
+        "qty": 1
+    },
+    {
+        "key": "K",
+        "score": 5,
+        "qty": 1
+    },
+    {
+        "key": "L",
+        "score": 1,
+        "qty": 4
+    },
+    {
+        "key": "M",
+        "score": 3,
+        "qty": 2
+    },
+    {
+        "key": "N",
+        "score": 1,
+        "qty": 6
+    },
+    {
+        "key": "O",
+        "score": 1,
+        "qty": 8
+    },
+    {
+        "key": "P",
+        "score": 3,
+        "qty": 2
+    },
+    {
+        "key": "Q",
+        "score": 10,
+        "qty": 1
+    },
+    {
+        "key": "R",
+        "score": 1,
+        "qty": 8
+    },
+    {
+        "key": "S",
+        "score": 1,
+        "qty": 4
+    },
+    {
+        "key": "T",
+        "score": 1,
+        "qty": 6
+    },
+    {
+        "key": "U",
+        "score": 1,
+        "qty": 4
+    },
+    {
+        "key": "V",
+        "score": 4,
+        "qty": 2
+    },
+    {
+        "key": "W",
+        "score": 4,
+        "qty": 2
+    },
+    {
+        "key": "X",
+        "score": 8,
+        "qty": 1
+    },
+    {
+        "key": "Y",
+        "score": 4,
+        "qty": 2
+    },
+    {
+        "key": "Z",
+        "score": 10,
+        "qty": 1
+    }
+]

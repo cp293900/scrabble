@@ -1,0 +1,139 @@
+.dice {
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    background-color: #efe5dc;
+    box-shadow: 1px 4px 4px #101010;
+}
+
+.dice .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 15px;
+    background-color: #000;
+    box-shadow: 0 2px 2px #888;
+}
+
+.dice .one,
+.dice .two,
+.dice .three,
+.dice .four,
+.dice .five,
+.dice .six {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+}
+
+.dice .one {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dice .two {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.dice .three {
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.dice .four,
+.dice .five,
+.dice .six {
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.dice .four {
+    align-items: space-around;
+    justify-items: space-around;
+}
+
+.dice .four .dot {
+    margin: 10px;
+}
+
+.dice .five {
+    align-items: space-between;
+    justify-items: space-around;
+}
+
+.dice .five .dot {
+    margin: 6px;
+    align-self: center;
+}
+
+.dice .six {
+    flex-direction: column;
+    align-items: center;
+}
+
+.dice .six .dot {
+    margin: 5px;
+}
+
+.dice .center {
+    position: absolute;
+    left: 30px;
+    top: 30px;
+}
+
+.dice .hidden {
+    display: none;
+}
+
+@keyframes roll {
+    0% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(1440deg);
+    }
+}
+
+.dice.roll {
+    animation-name: roll;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.56, 0.03, 0.48, 1.43);
+}
+
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.dice .fadeIn,
+.dice .fadeOut {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+.dice .fadeIn {
+    animation-name: fadein;
+}
+
+.dice .fadeOut {
+    animation-name: fadeout;
+}

@@ -1,0 +1,198 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    background: #eeb8b8;
+    font-size: 16px;
+}
+
+.wrapper {
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1140px;
+    margin: auto;
+}
+
+.gameRound {
+    text-align: center;
+}
+
+.gameInfo {
+    display: flex;
+    justify-content: center;
+}
+
+.gameInfo h4 {
+    margin: 0 1rem;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: calc(5% - 10px);
+    margin: 5px;  
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .5s;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card.flip {
+    cursor: default;
+}
+
+.card:active {
+    transform: scale(0.97);
+    transition: transform .2s;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+}
+
+.card > .face.ratio {
+    padding-top: 100%;
+}
+
+.card > .face.front,
+.card > .face.back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    border-radius: 5px;
+}
+
+.card > .face.front {
+    background: #021a33;
+}
+
+.card > .face.back {
+    transform: rotateY(180deg);
+    background: #fffdc9;
+}
+
+.card > .face.back.selected {
+    background: #9063b3;
+    color: #ffffff;
+}
+
+.card > .face.back.selected.done {
+    background: #828282;
+    color: #ffffff;
+}
+
+.card > .face > .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+.card > .face.front > .content > img {
+    width: 75%;
+}
+
+.card > .face.back > .content > .letter {
+    font-size: 1.6em;
+}
+
+.card > .face.back > .content > .score {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.scrabbled {
+    background: #e5e5e5;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.letters {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.operation {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.history {
+    background: #fdfde5;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.history .word {
+    border-bottom: 1px dashed #5f5f5f;
+    padding: 10px 0;
+}
+
+.roll_dice .pp_tent {
+    background-color: #d2dbbc;
+}
+
+.roll_dice .pp_tent .pp_tlt {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.roll_dice .pp_tent .dices {
+    display: flex;
+    justify-content: center;
+}
+
+.roll_dice .pp_tent .dices .dice {
+    margin: 1rem 1.5rem;
+    background-color: #ffffff;
+}
+
+@media screen and (max-width: 680px) {
+    .card {
+        width: calc(10% - 10px);
+        margin: 5px;  
+    }
+
+    .gameInfo h4 {
+        margin: 0 0.4rem;
+    }
+
+    .card > .face.back > .content > .letter {
+        font-size: 1em;
+    }
+    
+    .card > .face.back > .content > .score {
+        font-size: 0.5em;
+        right: 2px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .card > .face.back > .content > .score {
+        right: 0px;
+    }
+
+    .roll_dice .pp_tent .dices .dice {
+        margin: 1rem 0.5rem;
+    }
+}
