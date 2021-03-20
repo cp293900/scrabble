@@ -79,6 +79,8 @@ html, body {
 
 .card > .face.front {
     background: #021a33;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .card > .face.back {
