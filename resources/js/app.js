@@ -191,14 +191,14 @@ function initCheckButton() {
             return true;
         },
         onWrong: function () {
-            coverUndoneCards();
-            clearScrabbled();
             return true;
         },
         onComplete: function () {
             coverUndoneCards();
             clearScrabbled();
-            play();
+            setTimeout(() => {
+                play();
+            }, 500);
         }
     });
 }
@@ -248,7 +248,9 @@ function play() {
         countdown(function () {
             coverUndoneCards();
             clearScrabbled();
-            play();
+            setTimeout(() => {
+                play();
+            }, 500);
         }, minutes, seconds);
     });
 }
@@ -376,7 +378,7 @@ function addHistory(word) {
         })
     )
 
-    if(word.meaning.adjective && word.meaning.adjective.length > 0) {
+    if (word.meaning.adjective && word.meaning.adjective.length > 0) {
         $word.append(
             $('<div/>', {
                 'text': '(adj) ' + word.meaning.adjective
