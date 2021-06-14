@@ -19,7 +19,8 @@
 .dice .three,
 .dice .four,
 .dice .five,
-.dice .six {
+.dice .six,
+.dice .seven {
     width: 100%;
     height: 100%;
     position: relative;
@@ -44,7 +45,8 @@
 
 .dice .four,
 .dice .five,
-.dice .six {
+.dice .six,
+.dice .seven {
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -68,12 +70,14 @@
     align-self: center;
 }
 
-.dice .six {
+.dice .six,
+.dice .seven {
     flex-direction: column;
     align-items: center;
 }
 
-.dice .six .dot {
+.dice .six .dot,
+.dice .seven .dot {
     margin: 5px;
 }
 

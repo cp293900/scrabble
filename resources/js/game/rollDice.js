@@ -1,7 +1,7 @@
 ; (function ($) {
     $.fn.dice = function (inOptions) {
         const $dice = $(this);
-        let $one, $two, $three, $four, $five, $six, $currentFace;
+        let $one, $two, $three, $four, $five, $six, $seven, $currentFace;
 
         let disabled = false;
         $dice.roll = function () {
@@ -9,7 +9,7 @@
                 disabled = true;
                 hideFace($currentFace);
                 rollDice();
-                const num = generateNum();
+                const num = generateNum(2, 7);
                 switch (num) {
                     case 1:
                         $currentFace = $one;
@@ -28,6 +28,9 @@
                         break;
                     case 6:
                         $currentFace = $six;
+                        break;
+                    case 7:
+                        $currentFace = $seven;
                         break;
                 }
                 return $.Deferred(function (dfd) {
@@ -65,8 +68,8 @@
             $dice.removeClass("roll");
         }
 
-        function generateNum() {
-            return Math.floor(Math.random() * 6) + 1;
+        function generateNum(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
         (function init() {
@@ -172,20 +175,53 @@
                     'class': 'dot'
                 })
             );
+            const $seven_face = $('<div/>', {
+                'class': 'seven hidden'
+            }).append(
+                $('<div/>', {
+                    'class': 'dot'
+                })
+            ).append(
+                $('<div/>', {
+                    'class': 'dot'
+                })
+            ).append(
+                $('<div/>', {
+                    'class': 'dot'
+                })
+            ).append(
+                $('<div/>', {
+                    'class': 'dot'
+                })
+            ).append(
+                $('<div/>', {
+                    'class': 'dot'
+                })
+            ).append(
+                $('<div/>', {
+                    'class': 'dot'
+                })
+            ).append(
+                $('<div/>', {
+                    'class': 'dot center'
+                })
+            );
 
-            $dice.append($one_face);
+            // $dice.append($one_face);
             $dice.append($two_face);
             $dice.append($three_face);
             $dice.append($four_face);
             $dice.append($five_face);
             $dice.append($six_face);
+            $dice.append($seven_face);
 
-            $one = $dice.find(".one");
+            // $one = $dice.find(".one");
             $two = $dice.find(".two");
             $three = $dice.find(".three");
             $four = $dice.find(".four");
             $five = $dice.find(".five");
             $six = $dice.find(".six");
+            $seven = $dice.find(".seven");
             $currentFace = $six;
 
             if (!$dice.hasClass('dice')) {
