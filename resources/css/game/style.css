@@ -115,16 +115,24 @@
     text-align: center;
 }
 
-.history {
-    background: #fdfde5;
-    margin: 5px;
+.records {
     padding: 10px;
-    border-radius: 5px;
 }
 
-.history .word {
-    border-bottom: 1px dashed #5f5f5f;
-    padding: 10px 0;
+.records .word {
+    background: #3c8470;
+    color: #ffffff;
+    border-radius: 7px;
+    display: inline-block;
+    padding: 5px 20px;
+    margin: 5px;
+}
+
+.records .word .score {
+    border-left: 1px solid #ffffff;
+    margin-left: 10px;
+    padding-left: 10px;
+    color: #ffe611;;
 }
 
 .roll_dice .pp_tent {

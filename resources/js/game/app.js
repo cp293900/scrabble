@@ -4,8 +4,8 @@ const $remain = $('.gameInfo .remain .value');
 const $countdown = $('.gameInfo .countdown .value');
 const maxRound = 5;
 const maxRoundTime = 60;
-let history = [];
-let countdownHandler = null;
+let stopWatch = StopWatch();
+let records = [];
 
 (function init() {
     dealingCards();
@@ -162,6 +162,8 @@ function initCheckButton() {
             return $('.scrabbled .letters').find('.card').length > 0;
         },
         onClick: function (successHandler, worngHandler) {
+            stopWatch.stop();
+            
             let word = '';
             let score = 0;
             let ids = [];
@@ -173,21 +175,41 @@ function initCheckButton() {
             });
 
             twinwordApi.queryDefinition(word).then(function (response) {
-                response.ids = ids;
                 if (response.result_code === '200') {
-                    response.score = score;
-                    successHandler(response);
+                    const record = {
+                        'word': response.request,
+                        'score': score,
+                        'class': '',
+                        'meaning': ''
+                    }
+                    const meaning = response.meaning;
+                    if (meaning.adjective && meaning.adjective.length > 0) {
+                        record.class = 'adj';
+                        record.meaning = meaning.adjective
+                    } else if (meaning.adverb && meaning.adverb.length > 0) {
+                        record.class = 'adv';
+                        record.meaning = meaning.adverb
+                    } else if (meaning.noun && meaning.noun.length > 0) {
+                        record.class = 'noun';
+                        record.meaning = meaning.noun
+                    } else if (meaning.verb && meaning.verb.length > 0) {
+                        record.class = 'verb';
+                        record.meaning = meaning.verb
+                    }
+
+                    successHandler({
+                        'ids': ids,
+                        'record': record
+                    });
                 } else {
                     worngHandler();
                 }
             });
         },
-        onSuccess: function (response) {
-            response.ids.forEach((id, index) => {
-                $('.cards').find('.' + id).find('.face.back').addClass('done');
-            });
-            setScore(getScore() + response.score);
-            addHistory(response);
+        onSuccess: function (result) {
+            disableCards(result.ids);
+            setScore(getScore() + result.record.score);
+            addToRecord(result.record);
             return true;
         },
         onWrong: function () {
@@ -220,12 +242,11 @@ function clearScrabbled() {
 }
 
 function play() {
-    if (countdownHandler) {
-        clearInterval(countdownHandler);
-    }
+    stopWatch.stop();
 
     let round = getRound();
     if (round === maxRound) {
+        //寫進history
         pp.fire({
             'title': 'Game Over',
             'text': 'Your score is ' + getScore(),
@@ -233,6 +254,7 @@ function play() {
             'showCancelButton': false
         }).then(function (result) {
             if (result.value) {
+                //跳出操作頁
                 window.location.reload();
             }
         });
@@ -245,37 +267,16 @@ function play() {
 
         let minutes = maxRoundTime / 60;
         let seconds = maxRoundTime % 60;
-        countdown(function () {
+        stopWatch.start(function () {
             coverUndoneCards();
             clearScrabbled();
             setTimeout(() => {
                 play();
             }, 500);
+        }, function (result) {
+            setCountdown(result);
         }, minutes, seconds);
     });
-}
-
-function countdown(handler, minutes, seconds) {
-    let endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
-    let hours, mins, msLeft, time;
-
-    (function updateTimer() {
-        msLeft = endTime - (+new Date);
-        if (msLeft < 1000) {
-            setCountdown('Time is up!');
-            handler();
-        } else {
-            time = new Date(msLeft);
-            hours = time.getUTCHours();
-            mins = time.getUTCMinutes();
-            setCountdown((hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds()));
-            countdownHandler = setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
-        }
-    })();
-
-    function twoDigits(n) {
-        return (n <= 9 ? "0" + n : n);
-    }
 }
 
 function openRollDice() {
@@ -369,41 +370,23 @@ function getCountdown() {
     return $countdown.data('value') ? $countdown.data('value') : 0;
 }
 
-function addHistory(word) {
+function disableCards(ids) {
+    ids.forEach((id, index) => {
+        $('.cards').find('.' + id).find('.face.back').addClass('done');
+    });
+}
+
+function addToRecord(record) {
     const $word = $('<div/>', {
-        'class': 'word'
+        'class': 'word',
+        'text': record.word
     }).append(
-        $('<div/>', {
-            'text': history.length + 1 + '. ' + word.request
+        $('<span/>', {
+            'class': 'score',
+            'text': record.score
         })
     )
 
-    if (word.meaning.adjective && word.meaning.adjective.length > 0) {
-        $word.append(
-            $('<div/>', {
-                'text': '(adj) ' + word.meaning.adjective
-            })
-        )
-    } else if (word.meaning.adverb && word.meaning.adverb.length > 0) {
-        $word.append(
-            $('<div/>', {
-                'text': '(adv) ' + word.meaning.adverb
-            })
-        )
-    } else if (word.meaning.noun && word.meaning.noun.length > 0) {
-        $word.append(
-            $('<div/>', {
-                'text': '(n) ' + word.meaning.noun
-            })
-        )
-    } else if (word.meaning.verb && word.meaning.verb.length > 0) {
-        $word.append(
-            $('<div/>', {
-                'text': '(v) ' + word.meaning.verb
-            })
-        )
-    }
-
-    $('.history').append($word);
-    history.push(word);
+    $('.records').append($word);
+    records.push(record);
 }
