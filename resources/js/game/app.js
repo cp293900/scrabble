@@ -163,7 +163,7 @@ function initCheckButton() {
         },
         onClick: function (successHandler, worngHandler) {
             stopWatch.stop();
-            
+
             let word = '';
             let score = 0;
             let ids = [];
@@ -245,17 +245,19 @@ function play() {
     stopWatch.stop();
 
     let round = getRound();
-    if (round === maxRound) {
+    if (round < maxRound) {
         //寫進history
         pp.fire({
             'title': 'Game Over',
             'text': 'Your score is ' + getScore(),
             'confirmButtonText': 'Try again',
-            'showCancelButton': false
+            'cancelButtonText': 'Back to home'
         }).then(function (result) {
             if (result.value) {
                 //跳出操作頁
                 window.location.reload();
+            } else {
+                window.location.href = './';
             }
         });
         return;
