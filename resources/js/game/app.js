@@ -245,8 +245,8 @@ function play() {
     stopWatch.stop();
 
     let round = getRound();
-    if (round < maxRound) {
-        //寫進history
+    if (round === maxRound) {
+        save();
         pp.fire({
             'title': 'Game Over',
             'text': 'Your score is ' + getScore(),
@@ -254,7 +254,6 @@ function play() {
             'cancelButtonText': 'Back to home'
         }).then(function (result) {
             if (result.value) {
-                //跳出操作頁
                 window.location.reload();
             } else {
                 window.location.href = './';
@@ -391,4 +390,42 @@ function addToRecord(record) {
 
     $('.records').append($word);
     records.push(record);
+}
+
+function save() {
+    let myJson = localStorage.getItem('my');
+    let my;
+    if(myJson) {
+        my = JSON.parse(myJson);
+    } else {
+        my = {
+            'times': 0,
+            'total': 0,
+            'avg': 0,
+            'max': 0,
+            'rightRate': 0,
+            'longest': null,
+            'heigest': null,
+            'vocabulary': {}
+        }
+    }
+    my.times++;
+
+    let sum = 0;
+    records.forEach((record, index) => {
+        sum = sum + record.score;
+        if(!my.longest || record.word.length >= my.longest.word.length) {
+            my.longest = record;
+        }
+        if(!my.heigest || record.score >= my.heigest.score) {
+            my.heigest = record;
+        }
+        my.vocabulary[record.word] = record;
+    });
+    my.total += sum;
+    my.avg = (my.total / my.times).toFixed(2);
+    my.max = sum > my.max ? sum : my.max;
+    my.rightRate = (my.rightRate + (records.length / maxRound)) / my.times
+
+    localStorage.setItem('my', JSON.stringify(my));
 }
