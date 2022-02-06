@@ -403,7 +403,7 @@ function save() {
             'total': 0,
             'avg': 0,
             'max': 0,
-            'rightRate': 0,
+            'correctPercent': 0,
             'longest': null,
             'heigest': null,
             'vocabulary': {}
@@ -425,7 +425,7 @@ function save() {
     my.total += sum;
     my.avg = (my.total / my.times).toFixed(2);
     my.max = sum > my.max ? sum : my.max;
-    my.rightRate = (my.rightRate + (records.length / maxRound)) / my.times
+    my.correctPercent = (my.correctPercent + (records.length / maxRound)) / my.times
 
     localStorage.setItem('my', JSON.stringify(my));
 }

@@ -1,0 +1,157 @@
+.container h1 {    
+    margin: 1rem auto;
+    font-size: 4rem;
+    color: #f51892;
+    text-shadow: 0px 0px 5px #ffffff;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.board-stat {
+    flex-grow: 1.5;
+}
+
+.board-vacb {
+    flex-grow: 4;
+}
+
+.row {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px 10px;
+    box-shadow: 1px 1px 2px 1px #5555;
+}
+
+.box .title {
+    font-size: 20px;
+    font-weight: 100;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #00807a;
+    margin-bottom: 12px;
+}
+
+.box .content {
+    font-weight: bold;
+    padding-bottom: 12px;
+    font-size: 24px;
+    color: #363636;
+}
+
+.board-vacb .box {
+    height: calc(100% - 20px);
+}
+
+.board-vacb .content {
+    height: 100%;
+}
+
+.board-vacb .list {
+    height: 100%;
+    max-height: 375px;
+    overflow: auto;
+}
+
+.board-vacb .item {
+    display: flex;
+    padding: 5px 20px;
+    font-weight: normal;
+}
+
+.board-vacb .word {
+    flex-grow: 1;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.board-vacb .word:hover {
+    color: blue;
+}
+
+.board-vacb .word .class {
+    font-size: 10px;
+    padding-left: 5px;
+}
+
+.board-vacb .score {
+    font-size: 20px;
+    color: #f51892;
+}
+
+.board-vacb .footer .content {
+    display: flex;
+    border-top: 1px solid #555555;
+    margin: 12px 20px 0 20px;
+    padding: 4px 0px;
+}
+
+.board-vacb .footer .content .sum {
+    flex-grow: 1;
+}
+
+.box-times .content,
+.box-avg .content,
+.box-max .content,
+.box-correct .content {
+    text-align: right;
+}
+
+.box-longest .content,
+.box-heigest .content {
+    text-align: center;
+}
+
+.operation {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.btn {
+    width: 100%;
+    max-width: 15rem;
+    line-height: 2.5;
+    color: #ffffff;
+    font-size: 1.2rem;
+    letter-spacing: 0.03em;
+    background-color: #1f2335;
+    text-align: center;
+    border-radius: 2.5em;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.btn:hover,
+.btn:focus {
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+.pp_vacb {
+    text-align: left;
+}
+
+.pp_vacb .title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #1f2335;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #1f2335;
+}
+
+.pp_vacb .meaning {
+    padding: 20px 10px 0;
+    line-height: 1.2;
+}
