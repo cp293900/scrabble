@@ -58,11 +58,13 @@
     background: #021a33;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
+    z-index: 20;
 }
 
 .card > .face.back {
     transform: rotateY(180deg);
     background: #fffdc9;
+    z-index: 10;
 }
 
 .card > .face.back.selected {
