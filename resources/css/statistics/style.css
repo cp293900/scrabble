@@ -51,16 +51,20 @@
     color: #363636;
 }
 
-.board-vacb .box {
+.board-vacb .box.box-vocabulary {
+    display: flex;
+    flex-direction: column;
     height: calc(100% - 20px);
 }
 
-.board-vacb .content {
-    height: 100%;
+.board-vacb .box.box-vocabulary > .content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .board-vacb .list {
-    height: 100%;
+    flex-grow: 1;
     max-height: 375px;
     overflow: auto;
 }
